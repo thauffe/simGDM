@@ -13,6 +13,8 @@ end_t(ExtinctProb_t, End_tm1, A_t, Em_t, NaS_t, AS_t)
 
 \item{A_t}{Number of species evolved via anagenesis}
 
+\item{Em_t}{Number of emigration events}
+
 \item{NaS_t}{Number of new non-adaptive speciation events}
 
 \item{AS_t}{Number of new adaptive speciation events}

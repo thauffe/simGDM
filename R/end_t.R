@@ -6,6 +6,7 @@
 #' @param ExtinctProb_t Probability for a species to go extinct in a time step
 #' @param End_tm1 Endemic richness of the previous time step
 #' @param A_t Number of species evolved via anagenesis
+#' @param Em_t Number of emigration events
 #' @param NaS_t Number of new non-adaptive speciation events
 #' @param AS_t Number of new adaptive speciation events
 #'

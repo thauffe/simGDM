@@ -7,11 +7,11 @@
 em_t(End_tm1, Emi, Iso_t)
 }
 \arguments{
-\item{Ana}{The per-species probability of anagenesis per time step}
+\item{End_tm1}{Endemic richness of the previous time step}
 
-\item{Nat_tm1}{Number of natives of the previous time step}
+\item{Emi}{Probability of recolonization of the source area per time step}
 
-\item{NewArrivals_t}{Number of newly immigrating species}
+\item{Iso_t}{A descriptor of island isolation in arbitrary units}
 }
 \value{
 Number of emigration events

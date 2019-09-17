@@ -52,7 +52,20 @@ calc_diversity(Elevation_t, Topography_t, Area_t, Nat_tm1, End_tm1,
 \item{TargetEffect}{FALSE (default) No effect of island area on the immigration probability}
 }
 \value{
-Total island species richness
+The output is a dataframe containing diversity and rates per time step.
+\item{Richness}{ Native species richness}
+\item{NonEndemics}{ Non-endemic species richness}
+\item{Endemics}{ Endemic species richness}
+\item{Kmax}{ Carrying capacity}
+\item{EndemicsClado}{ Endemic species evolved via in-situ cladogenesis}
+\item{EndemicsAna}{ Endemic species evolved via in-situ anagenesis}
+\item{Immigrants}{ Species immigrating at that time step to the island}
+\item{NewViaClado}{ Species evolved via in-situ cladogenesis at that time step}
+\item{NewViaNonadaptClado}{ Species evolved via non-adaptive in-situ cladogenesis at that time step}
+\item{NewViaAdaptClado}{ Species evolved via adaptive in-situ cladogenesis at that time step}
+\item{NewViaAna}{ Species evolved via in-situ anagenesis at that time step}
+\item{Extinctions}{ Species going extinct at that time step}
+\item{Emigrants}{ Species emigrating from the island to the mainland}
 }
 \description{
 This function calculates the total island species richness

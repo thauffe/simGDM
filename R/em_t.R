@@ -3,9 +3,9 @@
 #' @description This function calculates the number of emigration events
 #' (Equation 5 in Appendix 2 of Borregaard et al. 2016)
 #'
-#' @param Ana The per-species probability of anagenesis per time step
-#' @param Nat_tm1 Number of natives of the previous time step
-#' @param NewArrivals_t Number of newly immigrating species
+#' @param End_tm1 Endemic richness of the previous time step
+#' @param Emi Probability of recolonization of the source area per time step
+#' @param Iso_t A descriptor of island isolation in arbitrary units
 #'
 #' @return Number of emigration events
 #'
