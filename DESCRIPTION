@@ -1,0 +1,12 @@
+Package: simGDM
+Type: Package
+Title: simGDM
+Version: 0.1.0
+Author: Torsten Hauffe
+Maintainer: Torsten Hauffe <torsten.hauffe@gmail.com>
+Description: Simulate island biodiversity
+    Reimplementation of Borregaard et al. 2016 with optional diversity-independence and target-effect
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
