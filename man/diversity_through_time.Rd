@@ -59,11 +59,98 @@ The output is a dataframe containing diversity and rates per time step.
 \item{Emigrants}{ Species emigrating from the island to the mainland}
 }
 \description{
-This function calculates the the number of colonization, speciation, extinction,
-and emmigration events through the trajectory of island evolution. This results in the total diversity
-of endemics and non-endemics at each moment in time.
+This function calculates the the number of colonization,
+speciation, extinction, and emmigration events through the trajectory
+of island evolution. This results in the total diversity of endemics
+and non-endemics at each moment in time.
+}
+\details{
+Using the parameters in Table 1 of Borregard et al. (2016) with the
+\code{\link{Island}} dataset results in slightly different diversity trajectories
+than Borregard's Figure 4a. The example below recreates this figure as closely as possible,
+but uses a different size of the source area (Ma) and probability of anagenesis (Ana).
+Reasons for the differences could be the manually digitalized properties of the
+island itself because Figure S3 (Borregard et al. 2016) containes no y-axis scale.
+Moreover, the original R script of Borregard et al. (2016) hard-codes many parameters.
+
+Rates can be plotted in units of events per time (as in Borregard et al. 2016)
+or in units of events per lineage per time (as in many phylogenetic studies).
+This largely removes the hump-shaped extinction trajectory.
 }
 \examples{
+# Reproduce Figure 4a (Borregaard et al., 2016)
+data(Island)
+
+Dtt <- diversity_through_time(Elevation = Island$Elevation,
+                              Topography = Island$Topography,
+                              Area = Island$Area,
+                              Vs = 0.0005,
+                              S0 = 0.0025,
+                              E0 = 0.001,
+                              Ms = 500,
+                              Iso_t = 0.3,
+                              Imm = 0.002,
+                              C0 = 0.5,
+                              Ana = 0.0003,
+                              Emi = 0.0002,
+                              Z = 0.25,
+                              Ma = 200,
+                              Msa = 0.3,
+                              DivDep = TRUE,
+                              TargetEffect = FALSE)
+
+ColRich <- rgb(170, 99, 42, maxColorValue = 255)
+ColNonEnd <- rgb(249, 195, 91, maxColorValue = 255)
+ColEnd <- rgb(191, 11, 189, maxColorValue = 255)
+ColEx <- rgb(211, 0, 0, maxColorValue = 255)
+ColAna <- rgb(255, 144, 235, maxColorValue = 255)
+ColClado <- rgb(64, 197, 253, maxColorValue = 255)
+
+# Diversities
+par(las = 1, mar = c(4, 6, 0.1, 0.5))
+plot(1:nrow(Dtt), Dtt[, "Kmax"], type = "l", col = "black",
+     xlim = c(-1, 5000), ylim = c(0, 160),
+     xaxs = "i", yaxs = "i",
+     xaxt = "n", xlab = "Time (Ma)",
+     ylab = "Species")
+axis(side = 1, at = c(0, 1000, 2000, 3000, 4000, 5000), labels = c(5, 4, 3, 2, 1, 0))
+lines(1:nrow(Dtt), Dtt[, "Richness"], type = "l", col = ColRich)
+lines(1:nrow(Dtt), Dtt[, "NonEndemics"], type = "l", col = ColNonEnd)
+lines(1:nrow(Dtt), Dtt[, "Endemics"], type = "l", col = ColEnd)
+legend("topright",
+       legend = c("Carrying capacity", "Total species richness", "Non-endemics", "Endemics"),
+       col = c("black", ColRich, ColNonEnd, ColEnd), lty = 1, bty = "n", cex = 0.7)
+
+# Rates
+plot(1:nrow(Dtt),  Dtt[, "Immigrants"], type = "l", col = ColNonEnd,
+     xlim = c(-1, 5000), ylim = c(0, 0.15),
+     xaxs = "i", yaxs = "i",
+     xaxt = "n", xlab = "Time (Ma)",
+     ylab = expression(atop(paste("Rate"), "(events"\%.\%"time step"^-1*")")))
+axis(side = 1, at = c(0, 1000, 2000, 3000, 4000, 5000), labels = c(5, 4, 3, 2, 1, 0))
+lines(1:nrow(Dtt), Dtt[, "Extinctions"], col = ColEx)
+lines(1:nrow(Dtt), Dtt[, "NewViaAna"], col = ColAna)
+lines(1:nrow(Dtt), Dtt[, "NewViaClado"], type = "l", col = ColClado)
+legend("topright",
+legend = c("Colonization", "Extinction", "Anagenesis", "Cladogenesis"),
+col = c(ColNonEnd, ColEx, ColAna, ColClado), lty = 1, bty = "n", cex = 0.7)
+
+# Divide by island richness and multiply by 1000
+# to obtain rates in units of events per island species per 1 million years
+plot(1:nrow(Dtt),  1000 * Dtt[, "Immigrants"] / Dtt[, "Richness"], type = "l", col = ColNonEnd,
+xlim = c(-1, 5000), ylim = c(0, 1.3),
+xaxs = "i", yaxs = "i",
+xaxt = "n", xlab = "Time (Ma)",
+ylab = expression(atop(paste("Rate"), "(events"\%.\%"species"^-1\%.\%"my"^-1*")")))
+axis(side = 1, at = c(0, 1000, 2000, 3000, 4000, 5000), labels = c(5, 4, 3, 2, 1, 0))
+lines(1:nrow(Dtt), 1000 * Dtt[, "Extinctions"] / Dtt[, "Richness"], col = ColEx)
+lines(1:nrow(Dtt), 1000 * Dtt[, "NewViaAna"] / Dtt[, "Richness"], col = ColAna)
+lines(1:nrow(Dtt), 1000 * Dtt[, "NewViaClado"] / Dtt[, "Richness"], type = "l", col = ColClado)
+legend("topright",
+       legend = c("Colonization", "Extinction", "Anagenesis", "Cladogenesis"),
+       col = c(ColNonEnd, ColEx, ColAna, ColClado), lty = 1, bty = "n", cex = 0.7)
+
+# Figure 4 of Hauffe et al.
 TimeSteps <- 4000
 X <- 1:TimeSteps
 Island <- 1/( 1+exp(-(0.0001 + 0.004*X[1:3000])) )
@@ -95,6 +182,9 @@ Dtt <- diversity_through_time(Elevation = Island,
 Borregaard, M. K., T. J. Matthews and R. J. Whittaker (2016).
 The general dynamic model: towards a unified theory of island biogeography?
 Global Ecology and Biogeography, 25(7), 805-816.
+
+Hauffe, T., D. Delicado, R.S. Etienne and L. Valente (submitted).
+Lake expansion increases equilibrium diversity via the target effect of island biogeography
 }
 \author{
 Torsten Hauffe
