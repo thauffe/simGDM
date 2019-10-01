@@ -18,13 +18,9 @@ install_github("thauffe/simGDM")
 library(simGDM)
 ```
 
-```{r, warning = F, echo = F}
-library(devtools)
-install_github("thauffe/simGDM")
-library(simGDM)
-```
-
-The first example provided in the `diversity_through_time` function recreates the diversity and rate trajectories
-of Borregaard et al. (2016).
+The first example provided in the `diversity_through_time` function showes how to recreate the 
+diversity and rate trajectories of Borregaard et al. (2016).
 
 ![Borregaard 2016 Fig4a](https://github.com/thauffe/simGDM/blob/master/Figures/BorFig4Div.png)
+
+
