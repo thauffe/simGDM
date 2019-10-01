@@ -12,3 +12,5 @@ library(devtools)
 install_github("thauffe/simGDM")
 library(simGDM)
 ```
+
+![Borregaard 2016 Fig4a](https://github.com/thauffe/simGDM/tree/master/Figures/BorFig4Div.png)
