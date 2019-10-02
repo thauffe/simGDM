@@ -28,10 +28,10 @@ on immigration probability.
 
 The geographical template is a island ontogeny with two distinct two periods of expansion.
 
-![Hauffe Fig4b](https://github.com/thauffe/simGDM/blob/master/Figures/Hauffe4b.png)
+![Hauffe Fig4b](https://github.com/thauffe/simGDM/blob/master/Figures/HauffeFig4b.png)
 
 High extinction rates and diversity-independence stimulate a source-sink equilibrium diversity 
 during the first period of island ontogeny. The island growth in the second period increase 
 the colonization rate via the target effect and increase the species richness.
 
-![Hauffe Fig4c](https://github.com/thauffe/simGDM/blob/master/Figures/Hauffe4c.png)
+![Hauffe Fig4c](https://github.com/thauffe/simGDM/blob/master/Figures/HauffeFig4c.png)
