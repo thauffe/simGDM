@@ -7,7 +7,7 @@ complemented by optional diversity-independent dynamics and the effect of island
 on the immigration probability ('target effect'; [Gilpin and Diamond 1976](https://www.pnas.org/content/73/11/4130)).
 
 
-##### Usage
+#### Usage
 The package can be installed directly from this github repository and its main function `diversity_through_time` 
 calculates native species richness, endemic richness, and rates of immigration, emigration, extinction, 
 and *in-situ* speciation for given trajectories of island area, topography, and elevation. 
@@ -19,8 +19,19 @@ library(simGDM)
 ```
 
 The first example provided in the `diversity_through_time` function showes how to recreate the 
-diversity and rate trajectories of Borregaard et al. (2016).
+diversity and emerging rate trajectories of Borregaard et al. (2016).
 
 ![Borregaard 2016 Fig4a](https://github.com/thauffe/simGDM/blob/master/Figures/BorFig4Div.png)
 
+The second example demonstrates how to switch off the diversity-dependence and to add the target effect
+on immigration probability. 
 
+The geographical template is a island ontogeny with two distinct two periods of expansion.
+
+![Hauffe Fig4b](https://github.com/thauffe/simGDM/blob/master/Figures/Hauffe4b.png)
+
+High extinction rates and diversity-independence stimulate a source-sink equilibrium diversity 
+during the first period of island ontogeny. The island growth in the second period increase 
+the colonization rate via the target effect and increase the species richness.
+
+![Hauffe Fig4c](https://github.com/thauffe/simGDM/blob/master/Figures/Hauffe4c.png)

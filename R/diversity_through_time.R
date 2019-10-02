@@ -141,23 +141,47 @@
 #' Island <- Island / 2
 #' Island <- c(Island, Island[length(Island)] + Island[1:1000])
 #' Clado <- 0.00007
-#' Dtt <- diversity_through_time(Elevation = Island,
-#'                               Topography = Island,
-#'                               Area = Island,
-#'                               Vs = 0.9 * Clado,
-#'                               S0 = 0.1 * Clado,
-#'                               E0 = 0.00095,
-#'                               Ms = 300,
-#'                               Iso_t = 0.3,
-#'                               Imm = 0.00019,
-#'                               C0 = 1,
-#'                               Ana = 0.00034,
-#'                               Emi = 0,
-#'                               Z = 0.25,
-#'                               Ma = 200,
-#'                               Msa = 0.3,
-#'                               DivDep = FALSE,
-#'                               TargetEffect = TRUE)
+#' DttTar <- diversity_through_time(Elevation = Island,
+#'                                  Topography = Island,
+#'                                  Area = Island,
+#'                                  Vs = 0.9 * Clado,
+#'                                  S0 = 0.1 * Clado,
+#'                                  E0 = 0.00095,
+#'                                  Ms = 300,
+#'                                  Iso_t = 0.3,
+#'                                  Imm = 0.00019,
+#'                                  C0 = 1,
+#'                                  Ana = 0.00034,
+#'                                  Emi = 0,
+#'                                  Z = 0.25,
+#'                                  Ma = 200,
+#'                                  Msa = 0.3,
+#'                                  DivDep = FALSE,
+#'                                  TargetEffect = TRUE)
+#'
+#' # Plot island ontogeny
+#' plot(X, Island, type = "l",
+#'      ylim = c(0, 1), xlim = c(-1, max(X)),
+#'      xaxs = "i", yaxs = "i",
+#'      xaxt = "n", xlab = "Time (Ma)",
+#'      ylab = "Elevation Area Topography (%)")
+#' axis(side = 1, at = c(0, 1000, 2000, 3000, 4000), labels = c(4, 3, 2, 1, 0))
+#'
+#' # Diversities
+#' plot(1:nrow(DttTar), DttTar[, "Richness"], type = "l", col = ColRich,
+#' xlim = c(-1, max(X)), ylim = c(0, 80),
+#' xaxs = "i", yaxs = "i",
+#' xaxt = "n", xlab = "Time (Ma)",
+#' ylab = "Species")
+#' axis(side = 1, at = c(0, 1000, 2000, 3000, 4000), labels = c(4, 3, 2, 1, 0))
+#' lines(1:nrow(DttTar), DttTar[, "NonEndemics"], type = "l", col = ColNonEnd)
+#' lines(1:nrow(DttTar), DttTar[, "EndemicsAna"], type = "l", col = ColAna)
+#' lines(1:nrow(DttTar), DttTar[, "EndemicsClado"], type = "l", col = ColClado)
+#' legend("topleft",
+#'        legend = c("Total species richness", "Non-endemics",
+#'                   "Endemics evolved via cladogenesis",
+#'                   "Endemics via anagenesis"),
+#'        col = c(ColRich, ColNonEnd, ColAna, ColClado), lty = 1, bty = "n", cex = 0.7)
 #'
 #' @export diversity_through_time
 
