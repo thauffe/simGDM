@@ -26,7 +26,7 @@ diversity and emerging rate trajectories of Borregaard et al. (2016).
 The second example demonstrates how to switch off the diversity-dependence and to add the target effect
 on immigration probability. 
 
-The geographical template is a island ontogeny with two distinct two periods of expansion.
+The geographical template is an island ontogeny with two distinct two periods of expansion.
 
 ![Hauffe Fig4b](https://github.com/thauffe/simGDM/blob/master/Figures/HauffeFig4b.png)
 
