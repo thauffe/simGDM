@@ -8,6 +8,7 @@
 #' @param Iso_t A descriptor of island isolation in arbitrary units
 #' @param NewSpecies_t Probability that an immigrant species is not already on the island
 #' @param Area_t Island area at moment t, to simulate the target effect (not included in Borregaard 2016)
+#' @param Elevation_t Island elevation at moment t, to simulate the target effect (not included in Borregaard 2016)
 #'
 #' @return Number of newly immigrating species
 #'
@@ -22,7 +23,7 @@
 #'
 #' @export newArrivals_t
 
-newArrivals_t <- function(Imm, Ms, Iso_t, NewSpecies_t, Area_t = 1){
-  Res <- ( (Imm * Ms) / Iso_t ) * NewSpecies_t * Area_t
+newArrivals_t <- function(Imm, Ms, Iso_t, NewSpecies_t, Area_t = 1, Elevation_t = 1){
+  Res <- ( (Imm * Ms) / Iso_t ) * NewSpecies_t * Area_t * Elevation_t
   return(Res)
 }

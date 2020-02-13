@@ -22,6 +22,7 @@
 #' @param Msa Power exponent controlling the abundance distribution of the source
 #' @param DivDep TRUE (default) Diversity dependence acting on immigration, extinction and in-situ speciation
 #' @param TargetEffect FALSE (default) No effect of island area on the immigration probability
+#' @param EnvirFilt FALSE (default) No effect of island elevation as proxy for habitat diversity on the immigration probability
 #'
 #' @details Using the parameters in Table 1 of Borregard et al. (2016) with the
 #' \code{\link{Island}} dataset results in slightly different diversity trajectories
@@ -79,7 +80,8 @@
 #'                               Ma = 200,
 #'                               Msa = 0.3,
 #'                               DivDep = TRUE,
-#'                               TargetEffect = FALSE)
+#'                               TargetEffect = FALSE,
+#'                               EnvirFilt = FALSE)
 #'
 #' ColRich <- rgb(170, 99, 42, maxColorValue = 255)
 #' ColNonEnd <- rgb(249, 195, 91, maxColorValue = 255)
@@ -157,7 +159,8 @@
 #'                                  Ma = 200,
 #'                                  Msa = 0.3,
 #'                                  DivDep = FALSE,
-#'                                  TargetEffect = TRUE)
+#'                                  TargetEffect = TRUE,
+#'                                  EnvirFilt = FALSE)
 #'
 #' # Plot island ontogeny
 #' plot(X, Island, type = "l",
@@ -201,7 +204,8 @@ diversity_through_time <- function(Elevation,
                                    Ma,
                                    Msa,
                                    DivDep = TRUE,
-                                   TargetEffect = FALSE){
+                                   TargetEffect = FALSE,
+                                   EnvirFilt = FALSE){
   S <- as.data.frame(matrix(NA_real_, nrow = length(Elevation), ncol = 13))
   colnames(S) <- c("Richness", "NonEndemics", "Endemics", "Kmax", "EndemicsClado", "EndemicsAna",
                    "Immigrants", "NewViaClado", "NewViaNonadaptClado", "NewViaAdaptClado",
@@ -228,7 +232,8 @@ diversity_through_time <- function(Elevation,
                               Ma = Ma,
                               Msa = Msa,
                               DivDep = DivDep,
-                              TargetEffect = TargetEffect)
+                              TargetEffect = TargetEffect,
+                              EnvirFilt = EnvirFilt)
   }
   return(S)
 }

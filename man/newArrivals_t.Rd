@@ -4,7 +4,8 @@
 \alias{newArrivals_t}
 \title{Number of newly immigrating species}
 \usage{
-newArrivals_t(Imm, Ms, Iso_t, NewSpecies_t, Area_t = 1)
+newArrivals_t(Imm, Ms, Iso_t, NewSpecies_t, Area_t = 1,
+  Elevation_t = 1)
 }
 \arguments{
 \item{Imm}{The probability of one species arriving from the mainland per time step}
@@ -16,6 +17,8 @@ newArrivals_t(Imm, Ms, Iso_t, NewSpecies_t, Area_t = 1)
 \item{NewSpecies_t}{Probability that an immigrant species is not already on the island}
 
 \item{Area_t}{Island area at moment t, to simulate the target effect (not included in Borregaard 2016)}
+
+\item{Elevation_t}{Island elevation at moment t, to simulate the target effect (not included in Borregaard 2016)}
 }
 \value{
 Number of newly immigrating species

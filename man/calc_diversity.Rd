@@ -6,7 +6,7 @@
 \usage{
 calc_diversity(Elevation_t, Topography_t, Area_t, Nat_tm1, End_tm1,
   Clado_tm1, Ana_tm1, Vs, S0, E0, Ms, Iso_t, Imm, C0, Ana, Emi, Z, Ma, Msa,
-  DivDep = TRUE, TargetEffect = FALSE)
+  DivDep = TRUE, TargetEffect = FALSE, EnvirFilt = FALSE)
 }
 \arguments{
 \item{Elevation_t}{Island elevation at one moment in time}
@@ -50,6 +50,8 @@ calc_diversity(Elevation_t, Topography_t, Area_t, Nat_tm1, End_tm1,
 \item{DivDep}{TRUE (default) Diversity dependence acting on immigration, extinction and in-situ speciation}
 
 \item{TargetEffect}{FALSE (default) No effect of island area on the immigration probability}
+
+\item{EnvirFilt}{FALSE (default) No effect of island elevation as proxy for habitat diversity on the immigration probability}
 }
 \value{
 The output is a dataframe containing diversity and rates per time step.

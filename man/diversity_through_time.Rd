@@ -5,7 +5,8 @@
 \title{Island diversity and events through time}
 \usage{
 diversity_through_time(Elevation, Topography, Area, Vs, S0, E0, Ms, Iso_t,
-  Imm, C0, Ana, Emi, Z, Ma, Msa, DivDep = TRUE, TargetEffect = FALSE)
+  Imm, C0, Ana, Emi, Z, Ma, Msa, DivDep = TRUE, TargetEffect = FALSE,
+  EnvirFilt = FALSE)
 }
 \arguments{
 \item{Elevation}{Vector of island elevation through time}
@@ -41,6 +42,8 @@ diversity_through_time(Elevation, Topography, Area, Vs, S0, E0, Ms, Iso_t,
 \item{DivDep}{TRUE (default) Diversity dependence acting on immigration, extinction and in-situ speciation}
 
 \item{TargetEffect}{FALSE (default) No effect of island area on the immigration probability}
+
+\item{EnvirFilt}{FALSE (default) No effect of island elevation as proxy for habitat diversity on the immigration probability}
 }
 \value{
 The output is a dataframe containing diversity and rates per time step.
@@ -97,7 +100,8 @@ Dtt <- diversity_through_time(Elevation = Island$Elevation,
                               Ma = 200,
                               Msa = 0.3,
                               DivDep = TRUE,
-                              TargetEffect = FALSE)
+                              TargetEffect = FALSE,
+                              EnvirFilt = FALSE)
 
 ColRich <- rgb(170, 99, 42, maxColorValue = 255)
 ColNonEnd <- rgb(249, 195, 91, maxColorValue = 255)
@@ -175,7 +179,8 @@ DttTar <- diversity_through_time(Elevation = Island,
                                  Ma = 200,
                                  Msa = 0.3,
                                  DivDep = FALSE,
-                                 TargetEffect = TRUE)
+                                 TargetEffect = TRUE,
+                                 EnvirFilt = FALSE)
 
 # Plot island ontogeny
 plot(X, Island, type = "l",

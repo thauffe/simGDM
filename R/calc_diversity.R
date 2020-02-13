@@ -24,6 +24,7 @@
 #' @param Msa Power exponent controlling the abundance distribution of the source
 #' @param DivDep TRUE (default) Diversity dependence acting on immigration, extinction and in-situ speciation
 #' @param TargetEffect FALSE (default) No effect of island area on the immigration probability
+#' @param EnvirFilt FALSE (default) No effect of island elevation as proxy for habitat diversity on the immigration probability
 #'
 #' @return The output is a dataframe containing diversity and rates per time step.
 #' \item{Richness}{ Native species richness}
@@ -53,7 +54,7 @@
 calc_diversity <- function(Elevation_t, Topography_t, Area_t,
                            Nat_tm1, End_tm1, Clado_tm1, Ana_tm1,
                            Vs, S0, E0, Ms, Iso_t, Imm, C0, Ana, Emi, Z, Ma, Msa,
-                           DivDep = TRUE, TargetEffect = FALSE){
+                           DivDep = TRUE, TargetEffect = FALSE, EnvirFilt = FALSE){
   # According to Borregaard step()
   ################################
   Sr_tm1 <- sr_t(Nat_t = Nat_tm1, End_t = End_tm1) # Eq. 13 Species richness
@@ -92,13 +93,18 @@ calc_diversity <- function(Elevation_t, Topography_t, Area_t,
   ###############################
   # How many species arrive to the island in the time interval
   NewSpecies_t <- newSpecies_t(Nat_tm1, Ms, Msa) # Eq.1
+  Area_t_Tmp <- 1
+  Elevation_t_Tmp <- 1
   if(TargetEffect){
-    NewArrivals_t <- newArrivals_t(Imm, Ms, Iso_t, NewSpecies_t, Area_t) # Eq.2
+    Area_t_Tmp <- Area_t
   }
-  else{
-    NewArrivals_t <- newArrivals_t(Imm, Ms, Iso_t, NewSpecies_t, Area_t = 1) # Eq.2
+  if(EnvirFilt){
+    Elevation_t_Tmp <- Elevation_t
   }
-  NewColonizers_t <- newColonizers_t(NewArrivals_t, C0, N_t) # Eq. 3 establishers
+  NewArrivals_t <- newArrivals_t(Imm, Ms, Iso_t, NewSpecies_t,
+                                 Area_t = Area_t_Tmp,
+                                 Elevation_t = Elevation_t_Tmp) # Eq.2
+  NewColonizers_t <- newColonizers_t(NewArrivals_t, C0, N_t) # Eq.3 establishers
   # 5. Anagenesis
   ################
   A_t <- a_t(Ana, Nat_tm1, NewArrivals_t, C0, N_t) # Eq.4 Anagensis
